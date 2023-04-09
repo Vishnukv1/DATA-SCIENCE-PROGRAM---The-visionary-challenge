@@ -1,0 +1,42 @@
+# Restaurant Management System
+
+menu = {"101": ["Pizza", 2, 20],
+        "102": ["Burger", 3, 10],
+        "103": ["orange juice", 4,5],
+        "104": ["laddu", 2, 2],
+        "105": ["cola", 1, 10]
+        }
+
+print("Welcome to the restaurant!")
+print("Please place your order by entering the food code and quantity.")
+
+order = {}
+total_bill = 0
+
+while True:
+    food_code = input("Enter food code (or 'q' to quit): ")
+    if food_code == 'q':
+        break
+    
+    if food_code not in menu.keys():
+        print("Invalid food code. Please try again.")
+        continue
+    
+    quantity = int(input("Enter quantity: "))
+    if quantity <= 0:
+        print("Invalid quantity. Please try again.")
+        continue
+    
+    price = menu[food_code][2]
+    total = price * quantity
+    total_bill += total
+    
+    order[menu[food_code][0]] = [quantity, price, total]
+    
+print("\nOrder Summary:")
+for food_item, details in order.items():
+    print(f"{food_item}: Quantity: {details[0]}, Price: ${details[1]:.2f}, Total: ${details[2]:.2f}")
+    
+print(f"\nTotal bill: ${total_bill:.2f}")
+print("Thank you for visiting our restaurant!")
+
